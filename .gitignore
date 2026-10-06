@@ -1,0 +1,10 @@
+node_modules/
+dist/
+dist-app/
+site/
+__pycache__/
+*.pyc
+.cache/
+.DS_Store
+*.local
+

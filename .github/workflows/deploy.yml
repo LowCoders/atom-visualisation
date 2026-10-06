@@ -1,0 +1,93 @@
+name: CI/CD Pipeline & GitHub Pages Deploy
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build & Verify
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install Node & Python Dependencies
+        run: |
+          npm ci || npm install
+          pip install -r requirements.txt
+
+      - name: Build Complete Distribution (Docs + 3D App)
+        run: npm run build
+
+      - name: Verify Build Artifacts
+        run: |
+          if [ ! -f site/index.html ]; then
+            echo "::error::site/index.html is missing after build!"
+            exit 1
+          fi
+          if [ ! -f site/hu/index.html ]; then
+            echo "::error::site/hu/index.html is missing after build!"
+            exit 1
+          fi
+          if [ ! -f site/en/index.html ]; then
+            echo "::error::site/en/index.html is missing after build!"
+            exit 1
+          fi
+          if [ ! -f site/app/index.html ]; then
+            echo "::error::site/app/index.html is missing after build!"
+            exit 1
+          fi
+          echo "Site build completed successfully. Disk usage:"
+          du -sh site/
+
+      - name: Upload GitHub Pages Artifact
+        if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') && github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    name: Deploy to GitHub Pages
+    if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

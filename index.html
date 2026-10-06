@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Univerzális Kvantum- és Atomvizualizációs Rendszer</title>
+  
+  <link rel="stylesheet" href="./src/ui/styles.css">
+
+  <!-- Import map for standalone browser ES module execution -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- 3D WebGL Canvas Container -->
+  <div id="canvas-container"></div>
+
+  <!-- Header Branding & Top Controls -->
+  <header>
+    <div class="header-top-row">
+      <!-- Top Simulation Control Bar -->
+      <div class="top-sim-bar" id="top-sim-bar">
+        <button class="btn-sim-action" id="btn-top-pause-play" title="Pause / Resume">⏸️ Szünet</button>
+        <button class="btn-sim-action" id="btn-top-reset-time" title="Reset Time">↺</button>
+        <div style="display: flex; align-items: center; gap: 4px; font-size: 11px;">
+          <input type="range" id="top-slider-timescale" min="0" max="3" value="1" step="0.1" style="width: 65px;">
+          <span id="top-val-timescale" style="color: var(--accent-cyan); font-weight: 700; width: 30px;">1.0x</span>
+        </div>
+      </div>
+
+      <!-- Language & Settings Toolbar -->
+      <div class="ui-toolbar" id="ui-toolbar">
+        <a href="../" class="btn-sim-action" id="btn-header-docs" title="Dokumentáció / Documentation" style="padding: 2px 8px; font-size: 11px; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;" data-i18n="nav.docs">📖 Docs</a>
+        <div class="toolbar-sep"></div>
+        <div class="lang-switch-group">
+          <button class="btn-lang active" data-lang="en">EN</button>
+          <button class="btn-lang" data-lang="hu">HU</button>
+        </div>
+        <div class="toolbar-sep"></div>
+        <button class="btn-sim-action" id="btn-header-settings" title="Beállítások / Settings" style="padding: 2px 8px; font-size: 12px; border-radius: 999px;">⚙️</button>
+      </div>
+    </div>
+
+    <!-- Interaktív Szint Breadcrumb & Navigáció -->
+    <nav id="level-nav" class="level-nav">
+      <button id="btn-level-back" class="btn-level-back" style="display: none;" title="Go back to previous level" data-i18n="nav.back">← Back</button>
+      <div class="level-crumbs">
+        <button class="crumb-btn active" data-level="atom" id="crumb-atom">
+          <span class="crumb-num">1</span>
+          <span class="crumb-text" data-i18n="nav.atom">Atom</span>
+        </button>
+        <span class="crumb-sep">›</span>
+        <button class="crumb-btn" data-level="nucleon" id="crumb-nucleon">
+          <span class="crumb-num">2</span>
+          <span class="crumb-text" data-i18n="nav.nucleon">Nucleon (p⁺/n⁰)</span>
+        </button>
+        <span class="crumb-sep">›</span>
+        <button class="crumb-btn" data-level="quark" id="crumb-quark">
+          <span class="crumb-num">3</span>
+          <span class="crumb-text" data-i18n="nav.quark">Quark & Wormhole</span>
+        </button>
+      </div>
+      <button class="btn-janus-toggle" id="btn-janus-toggle" data-level="janus" title="Switch to antimatter sector (Janus world, r < 0)" data-i18n="nav.janus">
+        🌌 Janus Antimatter
+      </button>
+    </nav>
+    <div id="level-hint" class="level-hint">
+      💡 Tip: Click on a nucleon in the nucleus, or start the Full Process Simulator!
+    </div>
+  </header>
+
+  <!-- Bottom Floating Camera Dock -->
+  <div id="camera-dock" class="camera-dock">
+    <button class="btn-dock-cam active" data-cam="perspective" data-i18n="controlPanel.cam3D">🌐 3D</button>
+    <button class="btn-dock-cam" data-cam="total" data-i18n="controlPanel.camTotal">🔭 Total</button>
+    <button class="btn-dock-cam" data-cam="side" data-i18n="controlPanel.camSide">🔬 Side</button>
+    <button class="btn-dock-cam" data-cam="top" data-i18n="controlPanel.camTop">⬇️ Top</button>
+    <button class="btn-dock-cam" data-cam="orbital" data-i18n="controlPanel.camOrbital">📐 Orbital</button>
+  </div>
+
+  <!-- Application Bootstrap -->
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

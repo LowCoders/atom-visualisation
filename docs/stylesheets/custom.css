@@ -1,0 +1,121 @@
+/* ==============================================================================
+   Quantum Visualisation 3D - Custom MkDocs Material Stylesheet
+   ============================================================================== */
+
+:root {
+  --qv-cyan: #06b6d4;
+  --qv-cyan-glow: rgba(6, 182, 212, 0.4);
+  --qv-amber: #f59e0b;
+  --qv-bg-card: rgba(15, 23, 42, 0.6);
+  --qv-border: rgba(56, 189, 248, 0.2);
+}
+
+/* Call to Action Hero Button Container */
+.cta-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 1.5rem 0 2rem 0;
+}
+
+.btn-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #0284c7 0%, #06b6d4 50%, #0d9488 100%);
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none !important;
+  box-shadow: 0 4px 14px rgba(6, 182, 212, 0.35);
+  transition: all 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(6, 182, 212, 0.55);
+  background: linear-gradient(135deg, #0369a1 0%, #0891b2 50%, #0f766e 100%);
+}
+
+.btn-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(148, 163, 184, 0.12);
+  color: inherit !important;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none !important;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-cta-secondary:hover {
+  background: rgba(148, 163, 184, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Feature Grid & Cards */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.feature-card {
+  background: var(--qv-bg-card);
+  border: 1px solid var(--qv-border);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.feature-card:hover {
+  border-color: var(--qv-cyan);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.15);
+}
+
+.feature-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: var(--qv-cyan);
+}
+
+.feature-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: rgba(226, 232, 240, 0.85);
+}
+
+/* Scientific Disclaimer Callout */
+.disclaimer-box {
+  background: rgba(245, 158, 11, 0.08);
+  border-left: 4px solid var(--qv-amber);
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.disclaimer-box h4 {
+  margin: 0 0 0.5rem 0;
+  color: var(--qv-amber);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.disclaimer-box p {
+  margin: 0;
+  font-size: 0.93rem;
+  line-height: 1.55;
+}

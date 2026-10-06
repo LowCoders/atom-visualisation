@@ -1,0 +1,121 @@
+site_name: Kvantum- és Atomvizualizáció 3D
+site_description: >-
+  Univerzális Moduláris Kvantum- és Atomvizualizációs Rendszer 3D WebGL szimuláció és többnyelvű elméleti dokumentáció.
+site_url: https://lowcoders.github.io/atom-visualisation/
+
+copyright: >-
+  Kvantum- és Atomvizualizáció 3D &nbsp;&middot;&nbsp;
+  <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.hu">CC BY-SA 4.0</a>
+  &nbsp;&middot;&nbsp;
+  <a href="/atom-visualisation/app/">⚛️ 3D Szimulátor</a>
+
+docs_dir: docs
+site_dir: site
+
+hooks:
+  - docs/hooks.py
+
+theme:
+  name: material
+  language: hu
+  features:
+    - navigation.tracking
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - scheme: slate
+      primary: cyan
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: Vissza a világos oldalra
+    - scheme: default
+      primary: cyan
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Át a sötét oldalra
+
+extra_css:
+  - stylesheets/custom.css
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.smartsymbols
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra_javascript:
+  - javascripts/mathjax-config.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+plugins:
+  - search:
+      lang:
+        - hu
+        - en
+  - i18n:
+      docs_structure: folder
+      fallback_to_default: true
+      reconfigure_material: true
+      reconfigure_search: true
+      languages:
+        - locale: hu
+          default: true
+          name: Magyar
+          build: true
+          site_name: Kvantum- és Atomvizualizáció 3D
+        - locale: en
+          name: English
+          build: true
+          site_name: Quantum & Atomic Visualisation 3D
+          nav_translations:
+            Kezdőlap: Home
+            "Használati Útmutató": "User Guide"
+            "Fizikai Háttér": "Theoretical Model"
+            "Összegző Központ": "Theoretical Hub"
+            "01. Kvantummechanika & Héjak": "01. Quantum Mechanics & Shells"
+            "02. Szórás & QED Vertex": "02. Scattering & QED Vertex"
+            "03. Nukleon & Magerők": "03. Nucleon & Nuclear Forces"
+            "04. Gravitáció & Vákuum": "04. Gravitation & Vacuum"
+            "05. Deák-tér & Egységes Tér": "05. Deák Spacetime & Unified Field"
+            "06. Topológia & Extrém Terek": "06. Topology & Extreme Fields"
+            "Egységes Modell": "Unified Model"
+            "Telepítés & CI/CD": "Installation & CI/CD"
+            "⚛️ 3D Szimulátor": "⚛️ 3D Simulator"
+
+nav:
+  - Kezdőlap: index.md
+  - "Használati Útmutató": guide.md
+  - "Fizikai Háttér":
+      - "Összegző Központ": physics.md
+      - "01. Kvantummechanika & Héjak": physics/01-kvantum-es-atom.md
+      - "02. Szórás & QED Vertex": physics/02-szoras-es-qed.md
+      - "03. Nukleon & Magerők": physics/03-nukleon-es-parton.md
+      - "04. Gravitáció & Vákuum": physics/04-gravitacio-es-vakuum.md
+      - "05. Deák-tér & Egységes Tér": physics/05-deak-ter-es-egyseges-elmelet.md
+      - "06. Topológia & Extrém Terek": physics/06-topologia-es-kulonleges-jelensegek.md
+  - "Egységes Modell": unified.md
+  - "Telepítés & CI/CD": installation.md
+  - "⚛️ 3D Szimulátor": /atom-visualisation/app/

@@ -1,0 +1,22 @@
+{
+  "name": "atom-visualisation",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Atom Visualisation - Univerzális Moduláris Kvantum- és Atomvizualizációs Rendszer",
+  "scripts": {
+    "dev": "vite",
+    "dev:docs": "mkdocs serve",
+    "build": "node scripts/assemble-site.mjs",
+    "build:app": "vite build --outDir dist-app --base ./",
+    "build:docs": "mkdocs build --strict",
+    "preview": "vite preview",
+    "preview:site": "npx serve site -p 8080",
+    "deploy": "bash scripts/deploy.sh"
+  },
+  "dependencies": {
+    "three": "^0.160.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}
